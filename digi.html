@@ -100,8 +100,12 @@
         }
       })
     }
-    console.log(products)
-    document.getElementById('counter').innerHTML=200
+    let c=0;
+    products.forEach(item=>
+    c= c +item.count
+    )
+    document.getElementById('counter').innerHTML=c
+
 
   }
 
@@ -116,7 +120,11 @@
         }
       }
     })
-    console.log(products)
-    document.getElementById('counter').innerHTML=100
+    
+    let c=0;
+    products.forEach(item=>
+    c= c +item.count
+    )
+    document.getElementById('counter').innerHTML=c
   }
 </script>
