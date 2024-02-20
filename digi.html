@@ -101,11 +101,22 @@
       })
     }
     console.log(products)
+    document.getElementById('counter').innerHTML=200
+
   }
 
 
   function decrement(title) {
-    console.log(title)
-
+    products.forEach(item=>{
+      if(item.title==title && item.count>1){
+         item.count=item.count-1
+      }else {
+        if(item.title==title && item.count==1){
+          products=products.filter(i=>i.title !=title)
+        }
+      }
+    })
+    console.log(products)
+    document.getElementById('counter').innerHTML=100
   }
 </script>
