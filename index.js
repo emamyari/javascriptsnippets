@@ -6,24 +6,24 @@ window.onload = function () {
     .then(response => response.json())
     .then(data =>
       data.data.products.forEach(item => {
-        document.getElementById('prList').innerHTML += "<div class='col-sm-6 col-md-4'>" +
-          "<div class='thumbnail' >" +
-          "<img src='" + item.images.main.url[0] + "' class='img-responsive'>" +
-          "<div class='caption'>" +
+        item.id=item.default_variant.id
+        document.getElementById('prList').innerHTML +=
 
-          "<div >" +
-          "<button onclick='decrement(\"" + item.title_fa + "\")'  class='col-md-6 btn btn-warning'>-</button>" +
-          "<button onclick='increment(\"" + item.title_fa + "\")' class='col-md-6 btn btn-success'>+</button>" +
+          "<div class='cardprdc'>" +
+          "<div class='thumbnail'>" +
+          "<img src='" + item.images.main.url[0] + "' class='img-fluid prdctImg'>" +
           "</div>" +
+          "      <div class='caption'>" +
+          "<p class='prdctTitle'>" + item.title_fa + "</p>" +
+          "<p class='prdctTitle'>" + item.default_variant.price.selling_price + "</p>" +
+          "<div>" +
+          "<button id='prdctAdd' onclick='increment(\"" + item.title_fa + "\")' class=' btn btn-success'>افزودن به سبد خرید</button>" +
+          // "<button id='prdctCount'  class=' btn btn-light'> 0 </button>" +
+          "<button id='prdctRemove' onclick='decrement(\"" + item.title_fa + "\")' class=' btn btn-outline-danger'>-</button>" +
 
-          "<div class='row'>" +
-          "<div class='col-md-6 col-xs-6'>" +
-          "<h6>" + item.default_variant.rank + "</h6>" +
-          "</div><div class='col-md-6 col-xs-6 price'>" +
-          "<h3><label>" + item.default_variant.price.selling_price + "</label></h3>" +
-          "</div></div>" +
-          "<p>" + item.title_fa + "</p>" +
-          "</div></div>";
+          "</div>" +
+          "</div>" +
+          "</div>"
 
       })
 
@@ -33,14 +33,18 @@ function resetMenu() {
   let cx = 0
   document.getElementById('modalBody').innerHTML = "";
   prodocts.forEach(item => {
+
     cx = item.count + cx;
+
     document.getElementById('modalBody').innerHTML += "title:" + item.title + "<br/>" + "count:" + item.count + "<br/>" +
       "<div >" +
       "<button onclick='decrement(\"" + item.title + "\")'  class='col-md-6 btn btn-warning'>-</button>" +
       "<button onclick='increment(\"" + item.title + "\")' class='col-md-6 btn btn-success'>+</button>" +
       "</div>" + "<hr/>"
+    
   })
   document.getElementById("counter").innerHTML = cx;
+
   // modal-body
 }
 function increment(title) {
