@@ -13,9 +13,9 @@
 
 <body>
 
-    <div class="flex"  >
-
-        <div class="box"  >
+    <button onclick="myFirstFunc()">load...</button>
+    <div id="plist" class="flex">
+        <div id="div1" class="box">
             <div>
                 <img src="download.jpg" alt="" class="img">
             </div>
@@ -26,9 +26,16 @@
                 <p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>
             </div>
         </div>
- 
-
+    </div>
 
 </body>
 
 </html>
+<script>
+    
+    var i=0
+
+    function myFirstFunc() {
+        document.getElementById("plist").innerHTML +=document.getElementById('div1').outerHTML
+    }
+</script>
