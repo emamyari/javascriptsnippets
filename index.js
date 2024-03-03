@@ -1,11 +1,11 @@
 
 let prodocts = [];
+let digikala=[] ;
 window.onload = function () {
-
   fetch('https://api.digikala.com/v1/categories/tv2/search/?brands%5B0%5D=11349&has_selling_stock=1&sort=1&seo_url=%2Fcategory-tv2%2F%3Fbrands%255b0%255d%3D11349%26has_selling_stock%3D1%26sort%3D1&page=1')
     .then(response => response.json())
-    .then(data =>
-      data.data.products.forEach(item => {
+    .then(data1 =>
+      data1.data.products.forEach(item => {
         item.id=item.default_variant.id
         document.getElementById('prList').innerHTML +=
 
@@ -17,42 +17,40 @@ window.onload = function () {
           "<p class='prdctTitle'>" + item.title_fa + "</p>" +
           "<p class='prdctTitle'>" + item.default_variant.price.selling_price + "</p>" +
           "<div>" +
-          "<button id='prdctAdd' onclick='increment(\"" + item.title_fa + "\")' class=' btn btn-success'>افزودن به سبد خرید</button>" +
+          "<button id='prdctAdd' onclick='increment(\"" + item.title_fa +"\",\""+item.images.main.url[0]+"\")' class=' btn btn-success'>افزودن به سبد خرید</button>" +
           // "<button id='prdctCount'  class=' btn btn-light'> 0 </button>" +
-          "<button id='prdctRemove' onclick='decrement(\"" + item.title_fa + "\")' class=' btn btn-outline-danger'>-</button>" +
+          "<button id='prdctRemove' onclick='decrement(\"" + item.title_fa +","+item.images.main.url[0]+ "\")' class=' btn btn-outline-danger'>-</button>" +
 
           "</div>" +
           "</div>" +
           "</div>"
-
-      })
-
-    );
+          digikala.push(item)
+        })
+        
+        );
+        console.log(digikala)
 }
 function resetMenu() {
   let cx = 0
-  document.getElementById('modalBody').innerHTML = "";
+  document.getElementById('tbd').innerHTML = "";
   prodocts.forEach(item => {
 
     cx = item.count + cx;
 
-    document.getElementById('modalBody').innerHTML += "title:" + item.title + "<br/>" + "count:" + item.count + "<br/>" +
-      "<div >" +
-      "<button onclick='decrement(\"" + item.title + "\")'  class='col-md-6 btn btn-warning'>-</button>" +
-      "<button onclick='increment(\"" + item.title + "\")' class='col-md-6 btn btn-success'>+</button>" +
-      "</div>" + "<hr/>"
-    
+      document.getElementById('tbd').innerHTML += '<tr style="font-size:12px"><td>' + item.title + '</td><td>' + item.count + '</td></tr>'
+
+
   })
   document.getElementById("counter").innerHTML = cx;
 
   // modal-body
 }
-function increment(title) {
+function increment(title,image) {
   let flag = 0
-  prodocts.forEach(item => {
+  digikala.forEach(item => {
     if (item.title === title) flag = 1;
   })
-  if (flag == 0) prodocts.push({ "title": title, "count": 1 })
+  if (flag == 0) prodocts.push({ "title": title, "count": 1 ,"link":image})
   if (flag == 1) prodocts.forEach(item => {
     if (item.title === title) {
       item.count += 1;
