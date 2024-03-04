@@ -15,27 +15,29 @@
 
     <button onclick="myFirstFunc()">load...</button>
     <div id="plist" class="flex">
-        <div id="div1" class="box">
-            <div>
-                <img src="download.jpg" alt="" class="img">
-            </div>
-            <div style=" direction: rtl;margin-right: 5%;">
-                <h4>میمون بی دم </h4>
-            </div>
-            <div style=" direction: rtl;margin-right: 5%;">
-                <p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>
-            </div>
-        </div>
+
     </div>
 
 </body>
 
 </html>
 <script>
-    
-    var i=0
+
+    var i = 0
 
     function myFirstFunc() {
-        document.getElementById("plist").innerHTML +=document.getElementById('div1').outerHTML
+        for(var i=0;i<100;i=i+1){
+            document.getElementById("plist").innerHTML +='<div id="div1" class="box">' +
+                '<div>' +
+                '<img src="download.jpg" alt="" class="img">' +
+                '</div>' +
+                '<div style=" direction: rtl;margin-right: 5%;">' +
+                '<h4>میمون بی دم </h4>' +
+                '</div>' +
+                '<div style=" direction: rtl;margin-right: 5%;">' +
+                '<p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>' +
+                '</div>' +
+                '</div>';
+        }
     }
 </script>
