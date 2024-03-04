@@ -26,13 +26,18 @@
     var i = 0
 
     function myFirstFunc() {
-        for(var i=0;i<100;i=i+1){
+
+        var lst=[{name:'علی',family:'مرادی'}
+                ,{name:'ولی',family:'ولایی'}
+                ,{name:'سمیرا',family:'سرایی'}
+                ]
+        for(var i=0;i<lst.length;i=i+1){
             document.getElementById("plist").innerHTML +='<div id="div1" class="box">' +
                 '<div>' +
                 '<img src="download.jpg" alt="" class="img">' +
                 '</div>' +
                 '<div style=" direction: rtl;margin-right: 5%;">' +
-                '<h4>میمون بی دم </h4>' +
+                '<h4>'+lst[i].name +' '+ lst[i].family+'</h4>' +
                 '</div>' +
                 '<div style=" direction: rtl;margin-right: 5%;">' +
                 '<p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>' +
