@@ -25,19 +25,16 @@
 
     var i = 0
 
-    function myFirstFunc() {
+    async function myFirstFunc() {
 
-        var lst=[{name:'علی',family:'مرادی'}
-                ,{name:'ولی',family:'ولایی'}
-                ,{name:'سمیرا',family:'سرایی'}
-                ]
-        for(var i=0;i<lst.length;i=i+1){
-            document.getElementById("plist").innerHTML +='<div id="div1" class="box">' +
+        var lst = await getProducts()
+        for (var i = 0; i < lst.length; i = i + 1) {
+            document.getElementById("plist").innerHTML += '<div id="div1" class="box">' +
                 '<div>' +
-                '<img src="download.jpg" alt="" class="img">' +
+                '<img src="'+lst[i].images.main.url[0]+'" alt="" class="img">' +
                 '</div>' +
                 '<div style=" direction: rtl;margin-right: 5%;">' +
-                '<h4>'+lst[i].name +' '+ lst[i].family+'</h4>' +
+                '<h6>' + lst[i].title_fa + ' ' + lst[i].family + '</h6>' +
                 '</div>' +
                 '<div style=" direction: rtl;margin-right: 5%;">' +
                 '<p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>' +
@@ -45,4 +42,13 @@
                 '</div>';
         }
     }
+
+
+    async function getProducts() {
+        const response = await fetch("https://api.digikala.com/v1/search/?q=%DA%A9%D9%86%D8%B3%D9%88%D9%84%20%D8%A8%D8%A7%D8%B2%DB%8C&page=1");
+        const result = await response.json();
+        return result.data.products;
+    }
+
+
 </script>
