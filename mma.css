@@ -22,4 +22,25 @@
     flex-wrap: wrap;
 }
 
-
+.btninc{
+    background-color: green ;
+    border-radius: 35px;
+    margin: 10px;
+    color: white;
+    width: 40px;
+    line-height: 35px;
+    FONT-SIZE: 25PX;
+}
+.btndec{
+    background-color: red ;
+    border-radius: 35px;
+    margin: 10px;
+    color: white;
+    width: 40px;
+    line-height: 35px;
+    FONT-SIZE: 25PX;
+}
+.centeritem{
+    display: flex;
+    justify-content: center;
+}
