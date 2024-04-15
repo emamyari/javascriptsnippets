@@ -12,8 +12,7 @@
 </head>
 
 <body>
-
-    <button onclick="myFirstFunc()">load...</button>
+    <div class="nav" id="count">0</div>
     <div id="plist" class="flex">
 
     </div>
@@ -23,6 +22,7 @@
 </html>
 <script>
 
+    myFirstFunc()
     var i = 0
 
     async function myFirstFunc() {
@@ -37,8 +37,8 @@
                 '<h6>' + lst[i].title_fa + ' ' + lst[i].family + '</h6>' +
                 '</div>' +
                 '<div class="centeritem">'+
-                '<button class="btndec"  >-</button>'+
-                '<button class="btninc"  >+</button>'+
+                '<button onclick="dec()" class="btndec"  >-</button>'+
+                '<button onclick="inc()" class="btninc"  >+</button>'+
                 '</div>'+
                 '<div style=" direction: rtl;margin-right: 5%;">' +
                 '<p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>' +
@@ -54,5 +54,16 @@
         return result.data.products;
     }
 
+    var c=0;
+
+    function inc(){
+       c=c+1;
+       document.getElementById('count').innerHTML=c
+    }
+    function dec(){
+        c=c-1;
+        document.getElementById('count').innerHTML=c
+
+    }
 
 </script>
