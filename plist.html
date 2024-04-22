@@ -37,8 +37,8 @@
                 '<h6>' + lst[i].title_fa + ' ' + lst[i].family + '</h6>' +
                 '</div>' +
                 '<div class="centeritem">'+
-                '<button onclick="dec()" class="btndec"  >-</button>'+
-                '<button onclick="inc()" class="btninc"  >+</button>'+
+                '<button onclick="dec(\''+lst[i].title_fa+'\')" class="btndec"  >-</button>'+
+                '<button onclick="inc(\''+lst[i].title_fa+'\')" class="btninc"  >+</button>'+
                 '</div>'+
                 '<div style=" direction: rtl;margin-right: 5%;">' +
                 '<p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>' +
@@ -54,15 +54,40 @@
         return result.data.products;
     }
 
-    var c=0;
+    var products=[]
+ 
+    function inc(title){
+        var f=0;
+        for(var i=0;i<products.length;i=i+1){
+            if (title==products[i].name){
+                products[i].count ++;
+                f=1;
+            }
+        }
 
-    function inc(){
-       c=c+1;
-       document.getElementById('count').innerHTML=c
-    }
-    function dec(){
-        c=c-1;
-        document.getElementById('count').innerHTML=c
+        if(f==0){
+            products.push({'name':title,'count':1})
+        }
+        console.log(products)
+
+
+     }
+    function dec(title){
+         
+        for(var i=0;i<products.length;i=i+1){
+            if(title==products[i].name){
+                products[i].count--;
+                 
+                if (products[i].count==0){
+                    products.splice(i,1) 
+                }
+            }
+        }
+        
+        console.log(products)
+
+
+
 
     }
 
