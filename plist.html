@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="mma.css">
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet"
         type="text/css" />
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
@@ -17,6 +20,9 @@
 
     </div>
 
+
+
+    
 </body>
 
 </html>
@@ -55,40 +61,35 @@
     }
 
     var products=[]
- 
+    var sum=0;
     function inc(title){
         var f=0;
         for(var i=0;i<products.length;i=i+1){
             if (title==products[i].name){
                 products[i].count ++;
+                sum++;
                 f=1;
             }
         }
-
         if(f==0){
             products.push({'name':title,'count':1})
+            sum++;
         }
-        console.log(products)
-
-
+        document.getElementById('count').innerHTML=sum
      }
     function dec(title){
          
         for(var i=0;i<products.length;i=i+1){
             if(title==products[i].name){
                 products[i].count--;
+                sum--;
                  
                 if (products[i].count==0){
                     products.splice(i,1) 
                 }
             }
         }
-        
-        console.log(products)
-
-
-
-
+        document.getElementById('count').innerHTML=sum
     }
 
 </script>
