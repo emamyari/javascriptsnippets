@@ -112,6 +112,8 @@ $('#myModal').on('shown.bs.modal', function () {
             sum++;
         }
         document.getElementById('count').innerHTML=sum
+        modalfunction();
+
      }
     function dec(title){
          
@@ -126,10 +128,17 @@ $('#myModal').on('shown.bs.modal', function () {
             }
         }
         document.getElementById('count').innerHTML=sum
+        modalfunction();
     }
 function modalfunction(){
+    document.getElementById('plistmodal').innerHTML='';
     for(i=0;i<products.length;i++){
-        document.getElementById('plistmodal').innerHTML+='<tr><td>'+products[i].name+'</td><td>'+products[i].count+'</td></tr>'
+        document.getElementById('plistmodal').innerHTML+='<tr><td>'+
+            products[i].name+'</td><td style="display:flex">'+
+            '<button onclick="dec(\''+ products[i].name+'\')" class="btndecsmall" >-</button>'+
+            products[i].count+
+            '<button onclick="inc(\''+ products[i].name+'\')" class="btnincsmall">+</button>'+
+            '</td></tr>';
     }
 }
 </script>
