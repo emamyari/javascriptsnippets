@@ -16,12 +16,21 @@
 </head>
 
 <body>
-    <button onclick="modalfunction()" class="" id="count" type="button" class=" nav btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-      </button>
+
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+              <span id="count" onclick="modalfunction()" data-toggle="modal" data-target="#exampleModal">سبد خرید خالی می باشد  </span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+
      <div id="plist" class="flex">
 
-    </div>
+     </div>
 
     
       
@@ -40,6 +49,7 @@
                     <thead>
                         <th>title</th>
                         <th>image</th>
+                        <th>price</th>
                         <th>count</th>
                     </thead>
                     <tbody id="plistmodal">
@@ -61,6 +71,7 @@
 </body>
 
 </html>
+
 <script>
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').trigger('focus')
@@ -81,10 +92,10 @@ $('#myModal').on('shown.bs.modal', function () {
                 '</div>' +
                 '<div class="centeritem">'+
                 '<button onclick="dec(\''+lst[i].title_fa+'\')" class="btndec"  >-</button>'+
-                '<button onclick="inc(\''+lst[i].title_fa+'\')" class="btninc"  >+</button>'+
+                '<button onclick="inc(\''+lst[i].title_fa+'\',\''+lst[i].images.main.url[0]+'\',\''+lst[i].default_variant.price.selling_price+'\')" class="btninc"  >+</button>'+
                 '</div>'+
                 '<div style=" direction: rtl;margin-right: 5%;">' +
-                '<p style="font-size: 12px;">حیوان خانگی تربیت شده دارای مجوز بهداشت</p>' +
+                '<p style="font-size: 12px;">'+lst[i].default_variant.price.selling_price+'</p>' +
                 '</div>' +
                 '</div>';
         }
@@ -99,7 +110,7 @@ $('#myModal').on('shown.bs.modal', function () {
 
     var products=[]
     var sum=0;
-    function inc(title){
+    function inc(title,image,price){
         var f=0;
         for(var i=0;i<products.length;i=i+1){
             if (title==products[i].name){
@@ -109,7 +120,7 @@ $('#myModal').on('shown.bs.modal', function () {
             }
         }
         if(f==0){
-            products.push({'name':title,'count':1})
+            products.push({'name':title,img:image,'count':1,price:price})
             sum++;
         }
         document.getElementById('count').innerHTML=sum
@@ -136,7 +147,8 @@ function modalfunction(){
     for(i=0;i<products.length;i++){
         document.getElementById('plistmodal').innerHTML+='<tr><td>'+
             products[i].name+'</td>'+
-            '<td><img class="smallpic" src="download.jpg"></td>'+
+            '<td><img class="smallpic" src="'+products[i].img+'"></td>'+
+            '<td>'+products[i].price+'</td>'+
 
             '<td style="display:flex">'+
             '<button onclick="dec(\''+ products[i].name+'\')" class="btndecsmall" >-</button>'+
